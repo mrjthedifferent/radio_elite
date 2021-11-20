@@ -33,10 +33,11 @@ Decoration background = const BoxDecoration(
       tileMode: TileMode.clamp),
 );
 
-GradientText gradientText(String text) {
+GradientText gradientText(String text, double fontSize) {
   return GradientText(
     text,
-    style: const TextStyle(
+    style: TextStyle(
+      fontSize: fontSize,
       fontWeight: FontWeight.bold,
     ),
     gradient: const LinearGradient(colors: [
@@ -46,43 +47,3 @@ GradientText gradientText(String text) {
   );
 }
 
-BottomAppBar myBottomAppBar() {
-  return BottomAppBar(
-    color: const Color(0xFF558DE2),
-    shape: const CircularNotchedRectangle(),
-    notchMargin: 8.0,
-    child: Container(
-      height: 60,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Image.asset("assets/call.png"),
-                  gradientText("Contact Us")
-                ],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [Image.asset("assets/blog.png"), gradientText("")],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Image.asset("assets/blog.png"),
-                  gradientText("Blog")
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
