@@ -37,7 +37,6 @@ GradientText gradientText(String text) {
   return GradientText(
     text,
     style: const TextStyle(
-      fontSize: 18,
       fontWeight: FontWeight.bold,
     ),
     gradient: const LinearGradient(colors: [
@@ -51,24 +50,38 @@ BottomAppBar myBottomAppBar() {
   return BottomAppBar(
     color: const Color(0xFF558DE2),
     shape: const CircularNotchedRectangle(),
-    notchMargin: 5.0,
+    notchMargin: 8.0,
     child: Container(
       height: 60,
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Image.asset("assets/call.png"),
-              gradientText("Contact Us")
-            ],
-          ),
-          Column(
-            children: [Image.asset("assets/blog.png"), gradientText("Blog")],
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Image.asset("assets/call.png"),
+                  gradientText("Contact Us")
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [Image.asset("assets/blog.png"), gradientText("")],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  Image.asset("assets/blog.png"),
+                  gradientText("Blog")
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );
