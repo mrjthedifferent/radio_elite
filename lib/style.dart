@@ -46,4 +46,3 @@ GradientText gradientText(String text, double fontSize) {
     ]),
   );
 }
-
