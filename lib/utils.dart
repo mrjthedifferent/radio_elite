@@ -10,9 +10,11 @@ class Utils {
   static const holidayShow = "Don’t Miss The Holiday Video Show";
   static const contactUs = "Stations";
   static const blog = "Stations";
+  static const freeToContact = "Feel Free to Contact Us";
+  static const address =
+      "1645 Palm Beach Lakes Blvd #240\n1645 Palm Beach Lakes Blvd #240, West Palm Beach, FL 33401";
 
-  
-    static FloatingActionButton myFloatingActionButton(String icon) {
+  static FloatingActionButton myFloatingActionButton(String icon) {
     return FloatingActionButton(
       onPressed: () {},
       elevation: 20,

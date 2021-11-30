@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:radio_elite/contact_page.dart';
 import 'package:radio_elite/home_page.dart';
 import 'package:radio_elite/style.dart';
 import 'package:radio_elite/utils.dart';
@@ -26,18 +27,22 @@ class MyApp extends StatelessWidget {
           '/main': (context) => const WebViewPage(
                 url: "https://radioeliteusa.com/",
                 title: "Radio Elite",
+                isHome: false,
               ),
           '/about': (context) => const WebViewPage(
                 url: "https://radioeliteusa.com/about-us/",
+                isHome: false,
                 title: Utils.aboutUs,
               ),
           '/events': (context) => const WebViewPage(
                 url: "https://radioeliteusa.com/events/",
                 title: Utils.events,
+                isHome: false,
               ),
           '/stations': (context) => const WebViewPage(
                 url: "https://radioeliteusa.com/stations/",
                 title: Utils.stations,
+                isHome: false,
               ),
         });
   }
@@ -95,13 +100,13 @@ class _AppHomeState extends State<AppHome> {
 
     Widget getBody() {
       if (MyApp.currentIndex == 1) {
-        return const WebViewPage(
-          url: "https://radioeliteusa.com/contact-us/",
-          title: "Contact Us",
-        );
+        return ContactScreen();
       } else if (MyApp.currentIndex == 2) {
-        return const WebViewPage(
-            url: "https://radioeliteusa.com/", title: "Blog");
+        return WebViewPage(
+          url: "https://radioeliteusa.com/",
+          title: "Blog",
+          isHome: true,
+        );
       } else {
         return const HomePage();
       }
