@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:radio_elite/style.dart';
 import 'package:radio_elite/utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({Key? key}) : super(key: key);
@@ -116,26 +117,36 @@ class bottomWidget extends StatelessWidget {
       children: [
         IconButton(
           icon: Image.asset('assets/facebook.png'),
-          onPressed: () {},
+          onPressed: () {
+            _launchURL(
+                "https://www.facebook.com/Radio-Elite-International-106096355205022");
+          },
         ),
         IconButton(
           icon: Image.asset('assets/twitter.png'),
-          onPressed: () {},
+          onPressed: () {
+            _launchURL("https://twitter.com/RadioElite2");
+          },
         ),
         IconButton(
           icon: Image.asset('assets/instagram.png'),
-          onPressed: () {},
+          onPressed: () {
+            _launchURL("https://www.instagram.com/radioeliteinternational/");
+          },
         ),
         IconButton(
           icon: Image.asset('assets/linkedin.png'),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: Image.asset('assets/youtube.png'),
-          onPressed: () {},
+          onPressed: () {
+            _launchURL(
+                "https://www.linkedin.com/company/radio-elite-international/");
+          },
         ),
       ],
     );
+  }
+
+  void _launchURL(String _url) async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
   }
 
   InkWell submitBtn(BuildContext context) {

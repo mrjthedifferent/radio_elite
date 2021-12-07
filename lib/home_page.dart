@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:radio_elite/main.dart';
 import 'package:radio_elite/style.dart';
 import 'package:radio_elite/utils.dart';
 
@@ -11,7 +12,9 @@ class HomePage extends StatelessWidget {
       if (title == Utils.pressToJoin) {
         return InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '/main');
+            MyApp.currentIndex = 2;
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/main', (route) => false);
           },
           child: Container(
             height: 80,
@@ -26,7 +29,9 @@ class HomePage extends StatelessWidget {
       } else if (title == Utils.stations) {
         return InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '/stations');
+            MyApp.currentIndex = 2;
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/stations', (route) => false);
           },
           child: Container(
             height: 170,
@@ -49,15 +54,19 @@ class HomePage extends StatelessWidget {
       } else {
         return InkWell(
           onTap: () {
+            MyApp.currentIndex = 2;
             switch (title) {
               case Utils.aboutUs:
-                Navigator.pushNamed(context, '/main');
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/main', (route) => false);
                 break;
               case Utils.events:
-                Navigator.pushNamed(context, '/events');
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/events', (route) => false);
                 break;
               case Utils.liveBtn:
-                Navigator.pushNamed(context, '/main');
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/stream', (route) => false);
                 break;
             }
           },
