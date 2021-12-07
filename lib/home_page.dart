@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
             switch (title) {
               case Utils.aboutUs:
                 Navigator.pushNamedAndRemoveUntil(
-                    context, '/main', (route) => false);
+                    context, '/about', (route) => false);
                 break;
               case Utils.events:
                 Navigator.pushNamedAndRemoveUntil(

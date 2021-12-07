@@ -4,17 +4,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewExample extends StatefulWidget {
+class WebViewPage extends StatefulWidget {
   final String url;
   final String title;
 
-  WebViewExample({required this.url, required this.title});
+  const WebViewPage({Key? key, required this.url, required this.title})
+      : super(key: key);
 
   @override
-  _WebViewExampleState createState() => _WebViewExampleState();
+  _WebViewPageState createState() => _WebViewPageState();
 }
 
-class _WebViewExampleState extends State<WebViewExample> {
+class _WebViewPageState extends State<WebViewPage> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 
@@ -75,16 +76,5 @@ class _WebViewExampleState extends State<WebViewExample> {
         );
       }),
     );
-  }
-
-  JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
-    return JavascriptChannel(
-        name: 'Toaster',
-        onMessageReceived: (JavascriptMessage message) {
-          // ignore: deprecated_member_use
-          Scaffold.of(context).showSnackBar(
-            SnackBar(content: Text(message.message)),
-          );
-        });
   }
 }

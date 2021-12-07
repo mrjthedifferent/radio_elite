@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:radio_elite/contact_page.dart';
+import 'package:radio_elite/exit_popup.dart';
 import 'package:radio_elite/home_page.dart';
 import 'package:radio_elite/style.dart';
 import 'package:radio_elite/utils.dart';
-import 'package:radio_elite/webpage_test.dart';
+import 'package:radio_elite/web_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,19 +24,20 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (context) => AppHome(title: "home", url: ""),
+        '/': (context) => const AppHome(title: "home", url: ""),
         '/main': (context) =>
-            AppHome(title: "main", url: "https://radioeliteusa.com"),
-        '/stream': (context) =>
-            AppHome(title: "main", url: "https://usa10.fastcast4u.com/radioeliteinternational"),
+            const AppHome(title: "", url: "https://radioeliteusa.com"),
+        '/stream': (context) => const AppHome(
+            title: Utils.liveBtn,
+            url: "https://usa10.fastcast4u.com/radioeliteinternational"),
         '/blog': (context) =>
-            AppHome(title: "main", url: "https://radioeliteusa.com"),
-        '/about': (context) =>
-            AppHome(title: "main", url: "https://radioeliteusa.com/about-us"),
-        '/events': (context) =>
-            AppHome(title: "main", url: "https://radioeliteusa.com/events"),
-        '/stations': (context) =>
-            AppHome(title: "main", url: "https://radioeliteusa.com/stations"),
+            const AppHome(title: Utils.blog, url: "https://radioeliteusa.com"),
+        '/about': (context) => const AppHome(
+            title: Utils.aboutUs, url: "https://radioeliteusa.com/about-us"),
+        '/events': (context) => const AppHome(
+            title: Utils.events, url: "https://radioeliteusa.com/events"),
+        '/stations': (context) => const AppHome(
+            title: Utils.stations, url: "https://radioeliteusa.com/stations"),
       },
     );
   }
@@ -54,13 +56,16 @@ class AppHome extends StatefulWidget {
 class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: myBottomAppBar(),
-      floatingActionButton:
-          Utils.myFloatingActionButton(getCurrentFloatingIcon()),
-      floatingActionButtonLocation: fabLocation(),
-      body: getBody(),
+    return WillPopScope(
+      onWillPop: () => showExitPopup(context),
+      child: Scaffold(
+        extendBody: true,
+        bottomNavigationBar: myBottomAppBar(),
+        floatingActionButton:
+            Utils.myFloatingActionButton(getCurrentFloatingIcon(widget.title)),
+        floatingActionButtonLocation: fabLocation(),
+        body: getBody(),
+      ),
     );
   }
 
@@ -74,9 +79,22 @@ class _AppHomeState extends State<AppHome> {
     }
   }
 
-  String getCurrentFloatingIcon() {
+  String getCurrentFloatingIcon(String title) {
     if (MyApp.currentIndex == 2) {
-      return "assets/blog.png";
+      switch (title) {
+        case Utils.aboutUs:
+          return "assets/about.png";
+        case Utils.events:
+          return "assets/event.png";
+        case Utils.liveBtn:
+          return "assets/live.png";
+        case Utils.stations:
+          return "assets/station.png";
+        case Utils.pressToJoin:
+          return "assets/blog.png";
+        default:
+          return "assets/blog.png";
+      }
     } else if (MyApp.currentIndex == 1) {
       return "assets/call.png";
     } else {
@@ -88,7 +106,7 @@ class _AppHomeState extends State<AppHome> {
     if (MyApp.currentIndex == 1) {
       return const ContactScreen();
     } else if (MyApp.currentIndex == 2) {
-      return WebViewExample(
+      return WebViewPage(
         url: widget.url,
         title: widget.title,
       );

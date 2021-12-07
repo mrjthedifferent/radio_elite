@@ -9,7 +9,7 @@ class Utils {
   static const pressToJoin = "Press to join";
   static const holidayShow = "Don’t Miss The Holiday Video Show";
   static const contactUs = "Stations";
-  static const blog = "Stations";
+  static const blog = "Blog";
   static const freeToContact = "Feel Free to Contact Us";
   static const address =
       "1645 Palm Beach Lakes Blvd #240\n1645 Palm Beach Lakes Blvd #240, West Palm Beach, FL 33401";
@@ -34,6 +34,26 @@ class Utils {
                 tileMode: TileMode.clamp),
           ),
           child: Image.asset(icon)),
+    );
+  }
+
+  static void showSnackBar(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(message),
+          actions: [
+            ElevatedButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

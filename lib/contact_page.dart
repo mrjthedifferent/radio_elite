@@ -13,8 +13,8 @@ class ContactScreen extends StatelessWidget {
         decoration: background,
         child: Column(
           children: [
-            topWidget(),
-            bottomWidget(),
+            const TopWidget(),
+            BottomWidget(),
           ],
         ),
       ),
@@ -22,8 +22,8 @@ class ContactScreen extends StatelessWidget {
   }
 }
 
-class topWidget extends StatelessWidget {
-  const topWidget({
+class TopWidget extends StatelessWidget {
+  const TopWidget({
     Key? key,
   }) : super(key: key);
 
@@ -71,19 +71,21 @@ final Shader linearGradient = const LinearGradient(
     Color(0xFFFDFB51),
   ],
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
 );
 
-class bottomWidget extends StatelessWidget {
-  const bottomWidget({
+// ignore: must_be_immutable
+class BottomWidget extends StatelessWidget {
+  BottomWidget({
     Key? key,
   }) : super(key: key);
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController messageController = TextEditingController();
     return Expanded(
         flex: 2,
         child: SingleChildScrollView(
@@ -145,6 +147,22 @@ class bottomWidget extends StatelessWidget {
     );
   }
 
+  //send an email
+  void _sendEmail(BuildContext context) {
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        messageController.text.isEmpty) {
+      Utils.showSnackBar(context, "Please fill all the fields");
+      return;
+    }
+    const String subject = "Mail From Radio Elite App";
+    final String body =
+        "Name: ${nameController.text}\nEmail: ${emailController.text}\nMessage: ${messageController.text}";
+    const String email = "radioeliteinternational@gmail.com";
+    final String url = "mailto:$email?subject=$subject&body=$body";
+    _launchURL(url);
+  }
+
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
   }
@@ -152,23 +170,7 @@ class bottomWidget extends StatelessWidget {
   InkWell submitBtn(BuildContext context) {
     return InkWell(
       onTap: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Thank you for contacting us"),
-              content: Text("We will get back to you soon"),
-              actions: [
-                ElevatedButton(
-                  child: Text("OK"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        );
+        _sendEmail(context);
       },
       child: Container(
         height: 50,
