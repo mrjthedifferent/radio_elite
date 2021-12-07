@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="radio_elite"
+        android:label="Radio Elite"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
