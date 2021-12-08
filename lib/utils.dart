@@ -12,7 +12,7 @@ class Utils {
   static const blog = "Blog";
   static const freeToContact = "Feel Free to Contact Us";
   static const address =
-      "1645 Palm Beach Lakes Blvd #240\n1645 Palm Beach Lakes Blvd #240, West Palm Beach, FL 33401";
+      "1645 Palm Beach Lakes Blvd #240\nWest Palm Beach, FL 33401";
 
   static FloatingActionButton myFloatingActionButton(String icon) {
     return FloatingActionButton(

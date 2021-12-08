@@ -56,7 +56,7 @@ class TopWidget extends StatelessWidget {
                 ),
                 Container(
                     padding: const EdgeInsets.all(10.0),
-                    alignment: Alignment.bottomLeft,
+                    alignment: Alignment.bottomCenter,
                     child: gradientText(Utils.address, 15)),
               ],
             ),

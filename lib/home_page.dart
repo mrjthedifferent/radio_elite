@@ -152,11 +152,11 @@ class HomePage extends StatelessWidget {
           btnItem(Utils.liveBtn, "assets/live.png"),
           const SizedBox(height: 20.0),
           radioOptions(),
-          const SizedBox(height: 30.0),
+          const SizedBox(height: 20.0),/*
           gradientText(Utils.holidayShow, 20),
           const SizedBox(height: 10),
           drawTwoLines(),
-          const SizedBox(height: 20),
+          const SizedBox(height: 20),*/
           btnItem(Utils.pressToJoin, ""),
           const SizedBox(height: 60),
         ],
